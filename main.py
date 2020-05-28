@@ -67,7 +67,6 @@ class mainForm(QMainWindow):
         introLayout.addLayout(buttonLayout)
 
         introLayout.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
-#        introLayout.setContentsMargins(20,20,20,20)
         introLayout.setSpacing(20)
 
         widget = QWidget()
