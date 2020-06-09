@@ -1,0 +1,6 @@
+- lots of trouble using qt creator, especially setting layouts
+- for some reason one form's central widget was set to a vertical layout, another wasn't, can't seem to change them
+- - RESOLVED: 'break layout' button
+- Creating table within scrollarea for main form, scroll bars not appearing
+- - Resolved by deletig scrollarea and enabling scroll bars on the individual table widget
+- Landed on 1280x720 layout as a good middle ground for desktop applications, widgets not too small

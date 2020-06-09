@@ -12,7 +12,7 @@ class mainForm(QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("UI_Layouts/mainMenuForm.ui", self)
+        uic.loadUi("UI_Layouts/editTileForm.ui", self)
         self.title = "tbrpggepp"
 
 if __name__ == "__main__":

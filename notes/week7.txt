@@ -1,0 +1,2 @@
+- Fixed issue of non-adjusting widgets by reassigning all sub-widgets to central widget with defined layout, adding margins as needed
+- Completed building and naming of elements of forms

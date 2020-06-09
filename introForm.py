@@ -12,7 +12,7 @@ class mainForm(QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("introForm.ui", self)
+        uic.loadUi("UI_Layouts/introForm.ui", self)
         self.title = "tbrpggepp"
 
     def showDialog(self):
