@@ -1,0 +1,4 @@
+- Contemplaitng how to manage edit foorm for varying room types
+- Not sure how to have user edit moves dict
+- - Created seperate form for editing move dicts
+- - Added to main menu view for move dicts
