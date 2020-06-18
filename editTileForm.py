@@ -8,7 +8,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-class mainForm(QMainWindow):
+class editTileForm(QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -17,6 +17,6 @@ class mainForm(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    ex = mainForm()
+    ex = editTileForm()
     ex.show()
     sys.exit(app.exec_())

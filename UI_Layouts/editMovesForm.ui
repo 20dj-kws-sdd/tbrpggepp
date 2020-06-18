@@ -33,9 +33,9 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="lblTileProps">
+       <widget class="QLabel" name="lblTileMoves">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Edit Tile Properties&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Edit Tile Moves&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -51,9 +51,9 @@
          <number>20</number>
         </property>
         <item row="0" column="0">
-         <widget class="QLabel" name="lblName">
+         <widget class="QLabel" name="lblMoveName">
           <property name="text">
-           <string>Name:</string>
+           <string>Move Label:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -61,60 +61,35 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="lblXCoord">
-          <property name="text">
-           <string>X Coord:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="lblDesc">
-          <property name="text">
-           <string>Description:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QPlainTextEdit" name="pteDescValue"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="lblRetText">
-          <property name="text">
-           <string>Return text:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPlainTextEdit" name="pteRetTextValue"/>
-        </item>
-        <item row="3" column="1">
-         <widget class="QSpinBox" name="sbYCoordValue"/>
-        </item>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="sbXCoordValue"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="lblYCoord">
-          <property name="text">
-           <string>Y Coord:</string>
-          </property>
-         </widget>
+         <widget class="QLineEdit" name="leMoveNameValue"/>
         </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="lblType">
+         <widget class="QLabel" name="lblMoveDir">
           <property name="text">
-           <string>Type:</string>
+           <string>Move Direction:</string>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QComboBox" name="cbTypeValue"/>
+         <widget class="QComboBox" name="cbMoveDirValue"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item alignment="Qt::AlignTop">
+         <widget class="QPushButton" name="btnClear">
+          <property name="text">
+           <string>Clear</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignTop">
+         <widget class="QPushButton" name="btnAddMove">
+          <property name="text">
+           <string>Add Move</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -123,48 +98,7 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <layout class="QFormLayout" name="formLayout_7">
-        <property name="labelAlignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="horizontalSpacing">
-         <number>20</number>
-        </property>
-        <property name="verticalSpacing">
-         <number>20</number>
-        </property>
-        <item row="0" column="1">
-         <widget class="QPlainTextEdit" name="pteNarrTextValue">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="lblNarrText">
-          <property name="text">
-           <string>Narrative Text:</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btnEditElement">
-        <property name="text">
-         <string>Edit Element</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignTop">
-       <widget class="QPushButton" name="btnEditMoves">
-        <property name="text">
-         <string>Edit Moves</string>
-        </property>
-       </widget>
+       <widget class="QListWidget" name="lstMoves"/>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">

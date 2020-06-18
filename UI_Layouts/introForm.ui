@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="widget">
+  <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticallayout_2">
     <property name="spacing">
      <number>20</number>

@@ -33,9 +33,15 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="lblTileProps">
+       <widget class="QLabel" name="lblItemProprs">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Edit Tile Properties&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Edit Item Properties&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -61,50 +67,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="lblXCoord">
-          <property name="text">
-           <string>X Coord:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="lblDesc">
-          <property name="text">
-           <string>Description:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QPlainTextEdit" name="pteDescValue"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="lblRetText">
-          <property name="text">
-           <string>Return text:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPlainTextEdit" name="pteRetTextValue"/>
-        </item>
-        <item row="3" column="1">
-         <widget class="QSpinBox" name="sbYCoordValue"/>
-        </item>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="sbXCoordValue"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="lblYCoord">
-          <property name="text">
-           <string>Y Coord:</string>
-          </property>
-         </widget>
+         <widget class="QLineEdit" name="lblNameValue"/>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="lblType">
@@ -115,6 +78,52 @@
         </item>
         <item row="1" column="1">
          <widget class="QComboBox" name="cbTypeValue"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="lblHPEffect">
+          <property name="text">
+           <string>HP Effect:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="sbHPEffectValue"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="lblDmgType">
+          <property name="text">
+           <string>Dmg Type:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="cbDmgTypeValue"/>
+        </item>
+        <item row="4" column="1">
+         <widget class="QCheckBox" name="chbHealingValue">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>16</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="tristate">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="lblHealing">
+          <property name="text">
+           <string>Is Healing:</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -133,8 +142,15 @@
         <property name="verticalSpacing">
          <number>20</number>
         </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="lblEffectText">
+          <property name="text">
+           <string>Effect Text:</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="1">
-         <widget class="QPlainTextEdit" name="pteNarrTextValue">
+         <widget class="QPlainTextEdit" name="pteEffectTextValue">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -143,28 +159,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="lblNarrText">
-          <property name="text">
-           <string>Narrative Text:</string>
-          </property>
-         </widget>
-        </item>
        </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btnEditElement">
-        <property name="text">
-         <string>Edit Element</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignTop">
-       <widget class="QPushButton" name="btnEditMoves">
-        <property name="text">
-         <string>Edit Moves</string>
-        </property>
-       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">

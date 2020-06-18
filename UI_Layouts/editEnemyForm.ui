@@ -32,10 +32,10 @@
     </property>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="lblTileProps">
+      <item alignment="Qt::AlignVCenter">
+       <widget class="QLabel" name="lblEnemyProps">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Edit Tile Properties&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Edit Enemy Properties&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -61,50 +61,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="lblXCoord">
-          <property name="text">
-           <string>X Coord:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="lblDesc">
-          <property name="text">
-           <string>Description:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QPlainTextEdit" name="pteDescValue"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="lblRetText">
-          <property name="text">
-           <string>Return text:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPlainTextEdit" name="pteRetTextValue"/>
-        </item>
-        <item row="3" column="1">
-         <widget class="QSpinBox" name="sbYCoordValue"/>
-        </item>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="sbXCoordValue"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="lblYCoord">
-          <property name="text">
-           <string>Y Coord:</string>
-          </property>
-         </widget>
+         <widget class="QLineEdit" name="leNameValue"/>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="lblType">
@@ -114,64 +71,47 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QComboBox" name="cbTypeValue"/>
+         <widget class="QComboBox" name="leTypeValue"/>
         </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <layout class="QFormLayout" name="formLayout_7">
-        <property name="labelAlignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="horizontalSpacing">
-         <number>20</number>
-        </property>
-        <property name="verticalSpacing">
-         <number>20</number>
-        </property>
-        <item row="0" column="1">
-         <widget class="QPlainTextEdit" name="pteNarrTextValue">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="lblNarrText">
+        <item row="2" column="0">
+         <widget class="QLabel" name="lblMaxHP">
           <property name="text">
-           <string>Narrative Text:</string>
+           <string>Max HP:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="sbMaxHPValue">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="lblAttackDmg">
+          <property name="text">
+           <string>Attack DMG:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QSpinBox" name="sbAttackDmgValue">
+          <property name="minimum">
+           <number>1</number>
           </property>
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btnEditElement">
-        <property name="text">
-         <string>Edit Element</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignTop">
-       <widget class="QPushButton" name="btnEditMoves">
-        <property name="text">
-         <string>Edit Moves</string>
-        </property>
-       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <property name="spacing">
          <number>20</number>
         </property>
-        <item>
+        <item alignment="Qt::AlignVCenter">
          <widget class="QPushButton" name="btnCancel">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -179,13 +119,25 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>500</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
            <string>Cancel</string>
           </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignVCenter">
          <widget class="QPushButton" name="btnSave">
+          <property name="maximumSize">
+           <size>
+            <width>500</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
            <string>Save</string>
           </property>
