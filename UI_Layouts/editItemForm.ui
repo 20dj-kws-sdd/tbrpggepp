@@ -180,9 +180,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="btnSave">
+         <widget class="QPushButton" name="btnSaveItem">
           <property name="text">
-           <string>Save</string>
+           <string>Save Item</string>
           </property>
          </widget>
         </item>
@@ -192,6 +192,7 @@
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -201,14 +202,7 @@
      <height>30</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menufile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpen_FIle"/>
-    <addaction name="actionExit"/>
-   </widget>
-   <widget class="QMenu" name="menuedit">
+   <widget class="QMenu" name="menuView">
     <property name="title">
      <string>View</string>
     </property>
@@ -218,17 +212,15 @@
      <string>Help</string>
     </property>
    </widget>
-   <addaction name="menufile"/>
-   <addaction name="menuedit"/>
+   <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionOpen_FIle">
+  <action name="actionOpen_File">
    <property name="text">
-    <string>Open</string>
+    <string>Open File</string>
    </property>
    <property name="statusTip">
-    <string>Open new File</string>
+    <string>Open New World File</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>

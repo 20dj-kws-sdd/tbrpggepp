@@ -452,6 +452,7 @@
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -461,14 +462,14 @@
      <height>30</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menufile">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionOpen_FIle"/>
+    <addaction name="actionOpen_File"/>
     <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menuedit">
+   <widget class="QMenu" name="menuView">
     <property name="title">
      <string>View</string>
     </property>
@@ -478,17 +479,16 @@
      <string>Help</string>
     </property>
    </widget>
-   <addaction name="menufile"/>
-   <addaction name="menuedit"/>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionOpen_FIle">
+  <action name="actionOpen_File">
    <property name="text">
-    <string>Open</string>
+    <string>Open File</string>
    </property>
    <property name="statusTip">
-    <string>Open new File</string>
+    <string>Open New World File</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>

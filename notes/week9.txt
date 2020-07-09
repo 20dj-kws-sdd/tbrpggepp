@@ -1,0 +1,10 @@
+- succesfully implemented logic for edit element button
+- working on navigating multiform applications: specifically re-opening parent forms when closing child forms.
+- - resolved by not having forms close when they create new ones
+- - restructured application layout such that the mainMenu form is opened initially, which instantaneously creates a child introForm. Previously the mainMenu was child of the introForm, but this will be better for when users click "new file" from the main menu. Also nicer logically that everything starts from main menu.
+- Found and resolved error with menubar actions in UI files, created from bad copy/pasting
+- Deleted 'file' QMenu from item/element editing forms
+
+- Added subroutines to close all child forms when New Worlds are loaded from main menu
+- - Learnt about del'ing objects in python and the __del__ method for classes and the hasattr() function
+- - Had an error when I tried to close child forms in the __del__ subroutine, since when the __del__ method was called the 'self' object had been deleted and calling the forms to close them threw up an error.

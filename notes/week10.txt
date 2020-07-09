@@ -1,0 +1,5 @@
+- added del child subroutine to cancel button on edit tile form
+- form construction and navigation now robust and workable, need to add meat into methods
+- - Had to relearn methods for json library in python, haven't used since last year. json.dumps() and json.loads() and file access pointers
+- - Learnt how to manipulate tables in pyqt5 for world-map-loading
+- - made table font bold for easier reading

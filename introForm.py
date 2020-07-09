@@ -16,8 +16,7 @@ class introForm(QMainWindow):
         uic.loadUi("UI_Layouts/introForm.ui", self)
         self.title = "tbrpggepp"
 
-        # Create new object for next form
-        self.mainMenu = mainMenuForm()
+        self.mainMenu = parent
 
         # Add connections
         self.btnOpenFile.clicked.connect(self.btnOpenFileClicked)
@@ -34,6 +33,7 @@ class introForm(QMainWindow):
                 error_dialog.setWindowTitle("Invalid file")
                 error_dialog.showMessage('Invalid world map file!')
             else:
+                self.mainMenu.loadWorldFile(fname[0])
                 self.mainMenu.show()
                 self.hide()
 

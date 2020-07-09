@@ -1,4 +1,5 @@
 - Contemplaitng how to manage edit foorm for varying room types
 - Not sure how to have user edit moves dict
 - - Created seperate form for editing move dicts
-- - Added to main menu view for move dicts
+ - Added to main menu view for move dicts
+- Started adding logic to determine whether to open item or enemy form dpeending on value in combobox, including greying out the add element button before combobox item is selected
