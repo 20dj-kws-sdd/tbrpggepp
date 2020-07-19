@@ -53,11 +53,11 @@ class mainMenuForm(QMainWindow):
         self.world_file.close()
 
 
-    def writeWorldFile(self, new_game_world=self.game_world):
+    def writeWorldFile(self, world_file_path):
+        self.world_file_path = world_file_path
         self.world_file = open(self.world_file_path, 'w')
-        self.world_file.write(json.dumps(new_game_world))
+        self.world_file.write(json.dumps(self.game_world))
         self.world_file.close()
-
 
 
     def tileClicked(self, index):
@@ -79,9 +79,20 @@ class mainMenuForm(QMainWindow):
 
 
     def btnEditTileClicked(self):
-        self.editTile = editTileForm(self.game_world, self.tblWorldMap.currentItem(), self)
+        tile = self.tblWorldMap.currentItem()
+        if tile == None:
+            self.editTile = editTileForm(self)
+        else:
+            tile_name = tile.text()
+            self.editTile = editTileForm(tile_name, self.game_world[tile_name], self)
         self.editTile.show()
-        print(self.game_world[self.tblWorldMap.currentItem().text()])
+
+
+    def updateTile(self, tile_name, tile_dict):
+        self.game_world[tile_name] = tile_dict
+        self.writeWorldFileself.world_file_path()
+        self.loadWorldFile(self.world_file_path)
+
 
     def openNewFile(self):
         # Close all pre-existing sub-forms before opening new world-file

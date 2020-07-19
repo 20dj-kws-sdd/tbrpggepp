@@ -3,7 +3,6 @@
 import sys
 import time
 import copy
-from pathlib import Path
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -11,30 +10,37 @@ from PyQt5 import uic
 
 class editEnemyForm(QMainWindow):
 
-    def __init__(self, game_world, tile, parent=None):
+    def __init__(self, enemy_dict={"type":"monster_obj", "params":{}}, parent=None):
         super().__init__(parent)
         uic.loadUi("UI_Layouts/editEnemyForm.ui", self)
         self.title = "tbrpggepp"
-        self.tile = tile
-        self.game_world = copy.deepcopy(game_world)
+        self.editTileForm = parent
+        self.enemy_dict = enemy_dict
         dmg_types = [None,'a']
         self.cbDmgTypeValue.addItems(dmg_types)
 
-        if self.tile != None:
+        if self.enemy_dict != {"type":"monster_obj", "params":{}}:
             # non-empty tile, prefill forms
-            enemy_json = self.game_world[self.tile.text()]["params"]["enemy"]
-
-            self.leNameValue.setText(enemy_json["params"]["name"])
-            self.cbDmgTypeValue.setCurrentIndex(dmg_types.index(enemy_json["params"]["dmgtype"]))
-            self.sbMaxHPValue.setValue(enemy_json["params"]["max_health"])
-            self.sbAttackDmgValue.setValue(enemy_json["params"]["attack_damage"])
+            self.leNameValue.setText(enemy_dict["params"]["name"])
+            self.cbDmgTypeValue.setCurrentIndex(dmg_types.index(enemy_dict["params"]["dmgtype"]))
+            self.sbMaxHPValue.setValue(enemy_dict["params"]["max_health"])
+            self.sbAttackDmgValue.setValue(enemy_dict["params"]["attack_damage"])
 
         # Add connections
         self.btnCancel.clicked.connect(self.btnCancelClicked)
+        self.btnSaveItem.clicked.connect(self.btnSaveEnemyClicked)
 
 
     def btnCancelClicked(self):
-        # TODO: Clear form items
+        self.close()
+
+
+    def btnSaveEnemyClicked(self):
+        self.enemy_dict["params"]["name"] = self.leNameValue.text()
+        self.enemy_dict["params"]["max_damage"] = self.sbAttackDmgValue.value()
+        self.enemy_dict["params"]["dmgtype"] = self.cbDmgTypeValue.currentText()
+        self.enemy_dict["params"]["max_health"] = self.sbMxHPValue.value()
+        self.editTileForm.updateEnemy(self.enemy_dict)
         self.close()
 
 if __name__ == "__main__":

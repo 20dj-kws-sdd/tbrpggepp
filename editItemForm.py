@@ -3,7 +3,6 @@
 import sys
 import time
 import copy
-from pathlib import Path
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -11,24 +10,24 @@ from PyQt5 import uic
 
 class editItemForm(QMainWindow):
 
-    def __init__(self, game_world, tile, parent=None):
+    def __init__(self, item_dict={"type":"item_obj", "params":{}}, parent=None):
         super().__init__(parent)
         uic.loadUi("UI_Layouts/editItemForm.ui", self)
         self.title = "tbrpggepp"
-        self.tile = tile
-        self.game_world = copy.deepcopy(game_world)
+        self.item_dict = item_dict
+        self.editTileForm = parent
         dmg_types = [None,'a']
         self.cbDmgTypeValue.addItems(dmg_types)
 
-        if self.tile != None:
+        if self.item_dict != {"type":"item_obj", "params":{}}:
             # non-empty tile, prefill forms
-            item_json = self.game_world[self.tile.text()]["params"]["item"]
 
-            self.leNameValue.setText(item_json["params"]["name"])
-            self.cbDmgTypeValue.setCurrentIndex(dmg_types.index(item_json["params"]["dmgtype"]))
-            self.sbHPEffectValue.setValue(item_json["params"]["hpdelta"])
-            self.chbHealingValue.setChecked(item_json["params"]["heal_bool"])
-            self.pteEffectTextValue.setPlainText(item_json["params"]["effect_text"])
+            self.leNameValue.setText(item_dict["name"])
+            self.cbDmgTypeValue.setCurrentIndex(dmg_types.index(item_dict["params"]["dmgtype"]))
+            self.sbHPEffectValue.setValue(item_dict["params"]["hpdelta"])
+            self.chbHealingValue.setChecked(item_dict["params"]["heal_bool"])
+            self.sbQuantityValue.setValue(item_dict["params"]["quantity"])
+            self.pteEffectTextValue.setPlainText(item_dict["params"]["effect_text"])
 
         # Add connections
         self.btnCancel.clicked.connect(self.btnCancelClicked)
@@ -36,10 +35,15 @@ class editItemForm(QMainWindow):
 
 
     def btnCancelClicked(self):
-        # TODO: Clear form items
         self.close()
 
     def btnSaveItemClicked(self):
+        self.item_dict["params"]["name"] = self.leNameValue.text()
+        self.item_dict["params"]["hpdelta"] = self.sbHPEffectValue.value()
+        self.item_dict["params"]["dmgtype"] = self.cbDmgTypeValue.currentText()
+        self.item_dict["params"]["heal_bool"] = self.chbHealingValue.isChecked()
+        self.item_dict["params"]["effect_text"] = self.pteEffectTextValue.toPlainText()
+        self.editTileForm.updateItem(item_dict, self.sbQuantityValue.value())
         self.close()
 
 if __name__ == "__main__":

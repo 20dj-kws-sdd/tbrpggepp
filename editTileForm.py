@@ -2,7 +2,6 @@
 
 import sys
 import time
-from pathlib import Path
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -13,30 +12,29 @@ from editMovesForm import *
 
 class editTileForm(QMainWindow):
 
-    def __init__(self, game_world, tile, parent=None):
+    def __init__(self, tile_name="", tile_dict={"params":{}}, parent=None):
         super().__init__(parent)
         uic.loadUi("UI_Layouts/editTileForm.ui", self)
-        self.title = "tbrpggoepp"
-        self.tile = tile
-        self.game_world = copy.deepcopy(game_world)
+        self.title = "tbrpggepp"
+        self.mainMenuForm = parent
+        self.tile_name = tile_name
+        self.tile_dict = tile_dict
         self.openEnemyInsteadOfItem = None
         self.btnEditElement.setDisabled(True)
         types = ["basic_room", "enemy_room", "item_room", "victory_room"]
         self.cbTypeValue.addItems(types)
 
-        if self.tile != None:
+        if self.tile_dict != {"params":{}} and self.tile_name != "":
             # non-empty tile, prefill forms
-            tile_json = self.game_world[self.tile.text()]
-
-            self.leNameValue.setText(self.tile.text())
-            self.cbTypeValue.setCurrentIndex(types.index(tile_json["type"]))
+            self.leNameValue.setText(self.tile_name)
+            self.cbTypeValue.setCurrentIndex(types.index(tile_dict["type"]))
             self.cbTypeValueActivated() # update logic with new type value
-            self.sbXCoordValue.setValue(tile_json["coords"][0])
-            self.sbYCoordValue.setValue(tile_json["coords"][1])
+            self.sbXCoordValue.setValue(tile_dict["coords"][0])
+            self.sbYCoordValue.setValue(tile_dict["coords"][1])
 
-            self.pteDescValue.setPlainText(tile_json["params"]["location_text"])
-            self.pteRetTextValue.setPlainText(tile_json["params"]["after_text"])
-            self.pteNarrTextValue.setPlainText(tile_json["params"]["effect_text"])
+            self.pteDescValue.setPlainText(tile_dict["params"]["location_text"])
+            self.pteRetTextValue.setPlainText(tile_dict["params"]["after_text"])
+            self.pteNarrTextValue.setPlainText(tile_dict["params"]["effect_text"])
 
         # Add connections
         self.btnEditElement.clicked.connect(self.btnEditElementClicked)
@@ -46,39 +44,56 @@ class editTileForm(QMainWindow):
         self.btnSave.clicked.connect(self.btnSaveClicked)
 
 
-    def btnCancelClicked(self):
-        self.delChildForms()
-        self.close()
-
-
     def cbTypeValueActivated(self):
         if self.cbTypeValue.currentText() == "enemy_room":
             self.openEnemyInsteadOfItem = True
             self.btnEditElement.setText("Edit Enemy")
             self.btnEditElement.setDisabled(False)
+            if "quantity" in self.tile_dict["params"].keys():
+                self.tile_dict["params"].pop("quantity")
+            if "item" in self.tile_dict["params"].keys():
+                self.tile_dict["params"].pop("item")
 
         elif self.cbTypeValue.currentText() == "item_room":
             self.openEnemyInsteadOfItem = False
             self.btnEditElement.setText("Edit Item")
             self.btnEditElement.setDisabled(False)
+            if "enemy" in self.tile_dict["params"].keys():
+                self.tile_dict["params"].pop("enemy")
 
         else:
             self.openEnemyInsteadOfItem = None
             self.btnEditElement.setText("Edit Element")
             self.btnEditElement.setDisabled(True)
+            if "quantity" in self.tile_dict["params"].keys():
+                self.tile_dict["params"].pop("quantity")
+            if "enemy" in self.tile_dict["params"].keys():
+                self.tile_dict["params"].pop("enemy")
+            if "item" in self.tile_dict["params"].keys():
+                self.tile_dict["params"].pop("item")
+
 
 
     def btnEditElementClicked(self):
         if self.openEnemyInsteadOfItem:
-            self.editEnemy = editEnemyForm(self.game_world, self.tile, self)
+            if "enemy" in self.tile_dict["params"].keys():
+                self.editEnemy = editEnemyForm(self, self.tile_dict["params"]["enemy"])
+            else:
+                self.editEnemy = editEnemyForm(self)
             self.editEnemy.show()
         else:
-            self.editItem = editItemForm(self.game_world, self.tile, self)
+            if "item" in self.tile_dict["params"].keys():
+                self.editEnemy = editEnemyForm(self, self.tile_dict["params"]["item"])
+            else:
+                self.editEnemy = editEnemyForm(self)
             self.editItem.show()
 
 
     def btnEditMovesClicked(self):
-        self.editMoves = editMovesForm(self.game_world, self.tile, self)
+        if "moves_dict" in self.tile_dict["params"].keys():
+            self.editMoves = editMovesForm(self, self.tile_dict["params"]["moves_dict"])
+        else:
+            self.editMoves = editMovesForm(self)
         self.editMoves.show()
 
 
@@ -94,16 +109,34 @@ class editTileForm(QMainWindow):
             self.editMoves.close()
             del self.editMoves
 
-    def propogateChanges(self, new_game_world):
-        # Called by child forms, propogates changes back to tile edit form when a child form is saved
-        self.game_world = new_game_world
+
+    def updateItem(self, new_item_dict, quantity):
+        self.tile_dict["params"]["item"] = new_item_dict
+        self.tile_dict["params"]["quantity"] = quantity
+
+
+    def updateEnemy(self, new_enemy_dict):
+        self.tile_dict["params"]["enemy"] = new_enemy_dict
+
+
+    def updateMoves(self, new_moves_dict):
+        self.tile_dict["params"]["moves_dict"] = new_moves_dict
+
+
+    def btnCancelClicked(self):
+        self.delChildForms()
+        self.close()
 
 
     def btnSaveClicked(self):
-        content = {}
-        conent
-        self.game_world[self.leNameValue.text()] = content
-        # etc
+        self.tile_dict["type"] = self.cbTypeValue.currentText()
+        self.tile_dict["params"]["effect_text"] = self.pteNarrTextValue.toPlainText()
+        self.tile_dict["params"]["location_text"] = self.pteDescValue.toPlainText()
+        self.tile_dict["params"]["after_text"] = self.pteRetTextValue.toPlainText()
+        self.tile_dict["coords"] = [sbXCoordValue.value(), sbYCoordValue.value()]
+        self.mainMenuForm.updateTile(self.tile_name, self.tile_dict)
+        self.delChildForms()
+        self.close()
 
 
 if __name__ == "__main__":

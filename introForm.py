@@ -2,7 +2,6 @@
 
 import sys
 import time
-from pathlib import Path
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -26,6 +25,7 @@ class introForm(QMainWindow):
         # from "http://zetcode.com/gui/pyqt5/dialogs/"
         home_dir = str(Path.home())  # Cross-platform technique for finding home directory
         fname = QFileDialog.getOpenFileName(self, 'Open world file', home_dir)
+        print(fname)
 
         if fname[0]:
             if not fname[0].endswith(".json"):
@@ -39,9 +39,17 @@ class introForm(QMainWindow):
 
     def btnNewWorldClicked(self):
         # create new file
-        #self.mainMenu.loadWorldFile(name)
-        self.mainMenu.show()
-        self.hide()
+        home_dir = str(Path.home())  # Cross-platform technique for finding home directory
+        fname = QFileDialog.getSaveFileName(self, 'Create world file', home_dir)
+        print(fname)
+        if not fname[0].endswith(".json"):
+            error_dialog = QErrorMessage(self)
+            error_dialog.setWindowTitle("Invalid file")
+            error_dialog.showMessage('Invalid world map file!')
+        else:
+            self.mainMenu.loadWorldFile(fname[0])
+            self.mainMenu.show()
+            self.hide()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
