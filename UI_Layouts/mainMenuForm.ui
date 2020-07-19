@@ -52,6 +52,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="btnPlayGame">
+        <property name="text">
+         <string>Play Game</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item>
@@ -438,9 +445,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btnPlayGame">
+           <widget class="QPushButton" name="btnDeleteTile">
             <property name="text">
-             <string>Play Game</string>
+             <string>Delete Tile</string>
             </property>
            </widget>
           </item>

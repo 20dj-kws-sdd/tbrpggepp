@@ -15,7 +15,7 @@ class editMovesForm(QMainWindow):
         uic.loadUi("UI_Layouts/editMovesForm.ui", self)
         self.title = "tbrpggepp"
         self.editTileForm = parent
-        self.moves_dict = moves_dict
+        self.moves_dict = copy.deepcopy(moves_dict)
         self.moves = {"[0,-1]":[0,-1], "[1,0]":[1,0], "[0,1]":[0,1], "[-1,0]":[-1,0]}
         self.cbMoveDirValue.addItems(self.moves.keys())
 

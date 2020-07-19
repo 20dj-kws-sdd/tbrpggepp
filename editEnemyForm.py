@@ -15,7 +15,7 @@ class editEnemyForm(QMainWindow):
         uic.loadUi("UI_Layouts/editEnemyForm.ui", self)
         self.title = "tbrpggepp"
         self.editTileForm = parent
-        self.enemy_dict = enemy_dict
+        self.enemy_dict = copy.deepcopy(enemy_dict)
         dmg_types = [None,'a']
         self.cbDmgTypeValue.addItems(dmg_types)
 
@@ -28,7 +28,7 @@ class editEnemyForm(QMainWindow):
 
         # Add connections
         self.btnCancel.clicked.connect(self.btnCancelClicked)
-        self.btnSaveItem.clicked.connect(self.btnSaveEnemyClicked)
+        self.btnSaveEnemy.clicked.connect(self.btnSaveEnemyClicked)
 
 
     def btnCancelClicked(self):
@@ -37,9 +37,10 @@ class editEnemyForm(QMainWindow):
 
     def btnSaveEnemyClicked(self):
         self.enemy_dict["params"]["name"] = self.leNameValue.text()
-        self.enemy_dict["params"]["max_damage"] = self.sbAttackDmgValue.value()
-        self.enemy_dict["params"]["dmgtype"] = self.cbDmgTypeValue.currentText()
-        self.enemy_dict["params"]["max_health"] = self.sbMxHPValue.value()
+        self.enemy_dict["params"]["attack_damage"] = self.sbAttackDmgValue.value()
+        if self.cbDmgTypeValue.currentText() == "":
+            self.enemy_dict["params"]["dmgtype"] = None
+        self.enemy_dict["params"]["max_health"] = self.sbMaxHPValue.value()
         self.editTileForm.updateEnemy(self.enemy_dict)
         self.close()
 

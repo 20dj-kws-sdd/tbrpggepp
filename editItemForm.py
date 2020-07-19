@@ -14,7 +14,7 @@ class editItemForm(QMainWindow):
         super().__init__(parent)
         uic.loadUi("UI_Layouts/editItemForm.ui", self)
         self.title = "tbrpggepp"
-        self.item_dict = item_dict
+        self.item_dict = copy.deepcopy(item_dict)
         self.editTileForm = parent
         dmg_types = [None,'a']
         self.cbDmgTypeValue.addItems(dmg_types)
