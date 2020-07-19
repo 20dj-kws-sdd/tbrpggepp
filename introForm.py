@@ -38,6 +38,8 @@ class introForm(QMainWindow):
                 self.hide()
 
     def btnNewWorldClicked(self):
+        # create new file
+        #self.mainMenu.loadWorldFile(name)
         self.mainMenu.show()
         self.hide()
 

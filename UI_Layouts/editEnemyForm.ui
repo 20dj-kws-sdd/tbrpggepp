@@ -64,14 +64,14 @@
          <widget class="QLineEdit" name="leNameValue"/>
         </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="lblType">
+         <widget class="QLabel" name="lblDmgType">
           <property name="text">
-           <string>Type:</string>
+           <string>Dmg Type:</string>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QComboBox" name="leTypeValue"/>
+         <widget class="QComboBox" name="cbDmgTypeValue"/>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="lblMaxHP">

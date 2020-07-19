@@ -61,7 +61,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="leNameValue"/>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="lblXCoord">
@@ -72,26 +72,6 @@
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
          </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="lblDesc">
-          <property name="text">
-           <string>Description:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QPlainTextEdit" name="pteDescValue"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="lblRetText">
-          <property name="text">
-           <string>Return text:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPlainTextEdit" name="pteRetTextValue"/>
         </item>
         <item row="3" column="1">
          <widget class="QSpinBox" name="sbYCoordValue"/>
@@ -116,6 +96,23 @@
         <item row="1" column="1">
          <widget class="QComboBox" name="cbTypeValue"/>
         </item>
+        <item row="4" column="1">
+         <widget class="QPlainTextEdit" name="pteNarrTextValue">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="lblNarrText">
+          <property name="text">
+           <string>Narrative Text:</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
@@ -133,20 +130,23 @@
         <property name="verticalSpacing">
          <number>20</number>
         </property>
-        <item row="0" column="1">
-         <widget class="QPlainTextEdit" name="pteNarrTextValue">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+        <item row="1" column="1">
+         <widget class="QPlainTextEdit" name="pteDescValue"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="lblDesc">
+          <property name="text">
+           <string>Description:</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="lblNarrText">
+        <item row="2" column="1">
+         <widget class="QPlainTextEdit" name="pteRetTextValue"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="lblRetText">
           <property name="text">
-           <string>Narrative Text:</string>
+           <string>Return text:</string>
           </property>
          </widget>
         </item>

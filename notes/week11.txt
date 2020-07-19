@@ -1,0 +1,3 @@
+- Implemented moves editing form
+- - Created "propogateChange()" method in tile edit form such that changes made in the child forms can be "propogated" back to the parent and eventually to the main form
+- - Encountered an issue where changes would persist in the overall game world even if forms had the cancel (instead of the 'save') button clicked. Realized this was because of how Python handles references and the creation of new variables assigned preexisting variable values. Resolved by going into the init subroutine of each child form and replacing ```self.game_world = game_world``` with ```self.game_world = copy.deepcopy(game_world)``` which resolved the issue completely
