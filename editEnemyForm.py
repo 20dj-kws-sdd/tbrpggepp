@@ -11,11 +11,14 @@ from PyQt5 import uic
 class editEnemyForm(QMainWindow):
 
     def __init__(self, enemy_dict={"type":"monster_obj", "params":{}}, parent=None):
+        """ Intialises editEnemyForm and is ran when such an object is created. Preloads
+        user-input boxes with data if an enemy for this tile already exists. """
         super().__init__(parent)
         uic.loadUi("UI_Layouts/editEnemyForm.ui", self)
         self.title = "tbrpggepp"
         self.editTileForm = parent
-        self.enemy_dict = copy.deepcopy(enemy_dict)
+        self.enemy_dict = copy.deepcopy(enemy_dict) # The structure that's manipulated and sent back to parent
+        # Load combobox with dmgtypes.
         dmg_types = [None,'a']
         self.cbDmgTypeValue.addItems(dmg_types)
 
@@ -32,12 +35,16 @@ class editEnemyForm(QMainWindow):
 
 
     def btnCancelClicked(self):
+        """ Simply closes form without sending any data back to parent. """
         self.close()
 
 
     def btnSaveEnemyClicked(self):
+        """ Loads parameters into enemy_dict with user-input data and sends it back to editItemform. """
         self.enemy_dict["params"]["name"] = self.leNameValue.text()
         self.enemy_dict["params"]["attack_damage"] = self.sbAttackDmgValue.value()
+        # Programatically an empty dmgtype is saved as 'None' but the combobox returns an
+        # empty string if this is selected. This if-statement catches that and corrects it.
         if self.cbDmgTypeValue.currentText() == "":
             self.enemy_dict["params"]["dmgtype"] = None
         self.enemy_dict["params"]["max_health"] = self.sbMaxHPValue.value()
@@ -48,4 +55,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     ex = editEnemyForm()
     ex.show()
-    sys.exit(app.exec_())
+    sysexit(app.exec_())

@@ -25,3 +25,9 @@
 - In this state the program is perfectly usable with manual use of git and the text game. Next step is to integrate the two into the application.
 
 - Added an if statement to convert empty dmgtype enemy value to None, as it is represented in the json
+
+- Added an error message if the user attempts to save a tile before opening/creating a world file.
+
+- Added to the if clauses in the intro form so the user doesn't get an error message if they don't select a file (ie. cancelled the file dialog)
+
+- Added docstrings to every function in the program and proper comments, while I still remember how everything works!

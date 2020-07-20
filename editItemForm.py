@@ -11,11 +11,14 @@ from PyQt5 import uic
 class editItemForm(QMainWindow):
 
     def __init__(self, item_dict={"type":"item_obj", "params":{}}, parent=None):
+        """ Initialises editItem form, preloading input boxes if a prexisting item exists.
+        Ran when an editItemForm object is created. """
         super().__init__(parent)
         uic.loadUi("UI_Layouts/editItemForm.ui", self)
         self.title = "tbrpggepp"
-        self.item_dict = copy.deepcopy(item_dict)
+        self.item_dict = copy.deepcopy(item_dict) # The structure that is manipulated and sent back to parent
         self.editTileForm = parent
+        # Add dmgtypes to combobox
         dmg_types = [None,'a']
         self.cbDmgTypeValue.addItems(dmg_types)
 
@@ -35,9 +38,11 @@ class editItemForm(QMainWindow):
 
 
     def btnCancelClicked(self):
+        """ Simply closes form without updating any data. """
         self.close()
 
     def btnSaveItemClicked(self):
+        """ Loads parameters into item_dict with user-input data and sends it back to editItemform. """
         self.item_dict["params"]["name"] = self.leNameValue.text()
         self.item_dict["params"]["hpdelta"] = self.sbHPEffectValue.value()
         self.item_dict["params"]["dmgtype"] = self.cbDmgTypeValue.currentText()

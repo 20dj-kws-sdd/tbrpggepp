@@ -15,6 +15,7 @@ from editTileForm import *
 class mainMenuForm(QMainWindow):
 
     def __init__(self, parent=None):
+        """ Initialises mainMenuForm when such an object is created, opens introForm to get world file. """
         super().__init__(parent)
         uic.loadUi("UI_Layouts/mainMenuForm.ui", self)
         self.title = "tbrpggepp"
@@ -22,6 +23,7 @@ class mainMenuForm(QMainWindow):
         self.world_file_path = ""
         self.game_world = {}
 
+        # Open introForm to get world file
         self.introForm = introForm(self)
         self.introForm.show()
 
@@ -41,9 +43,8 @@ class mainMenuForm(QMainWindow):
 
 
     def loadWorldFile(self, world_file_path):
-        # Receives path to world file from intro form
-        # Processes file and loads into program memory
-        # and displays on tblWorldMap
+        """ Takes data from world_file.
+         Processes file, loads into game_world and displays on tblWorldMap """
         self.world_file_path = world_file_path
         self.world_file = open(self.world_file_path, 'r')
         self.game_world = json.load(self.world_file)
@@ -51,11 +52,11 @@ class mainMenuForm(QMainWindow):
         for tile in self.game_world.keys():
             cell = QTableWidgetItem(str(tile))
             self.tblWorldMap.setItem(self.game_world[tile]['coords'][1], self.game_world[tile]['coords'][0], cell)
-        # Do all processing in main form just send data back including element data
         self.world_file.close()
 
 
     def writeWorldFile(self, world_file_path):
+        """ Saves current game_world to disk """
         self.world_file_path = world_file_path
         self.world_file = open(self.world_file_path, 'w')
         self.world_file.write(json.dumps(self.game_world))
@@ -63,6 +64,7 @@ class mainMenuForm(QMainWindow):
 
 
     def tileClicked(self, index):
+        """ Ran when a tile is clicked. Updates sidebar info view """
         # If edit tile button is grayed, ungray it
         self.btnEditTile.setDisabled(False)
         # Update side value information
@@ -86,30 +88,45 @@ class mainMenuForm(QMainWindow):
 
 
     def btnEditTileClicked(self):
+        """ Ran when the "edit tile" button is clicked. Opens editTileForm loaded with tile data. """
         tile = self.tblWorldMap.currentItem()
         if tile == None:
+            # If the user is creating a new tile, grap coordinates from sidebar and load form
             self.editTile = editTileForm(coords=[int(self.lblCoordsValue.text().split(", ")[0]), int(self.lblCoordsValue.text().split(", ")[1])], parent=self)
         else:
+            # If the user is editing a preexisting tile, load form with tile data.
             tile_name = tile.text()
             self.editTile = editTileForm(tile_name=tile_name, tile_dict=self.game_world[tile_name],  parent=self)
         self.editTile.show()
 
 
     def btnDeleteTileClicked(self):
+        """ Ran when a user deletes a tile. Purges tile entry from game_world and reloads file into the mainMenu """
         tile = self.tblWorldMap.currentItem()
+        if tile == None:
+            # If the user clicked delete on an empty tile, do nothing
+            return
         self.game_world.pop(tile.text())
         self.writeWorldFile(self.world_file_path)
         self.loadWorldFile(self.world_file_path)
 
 
     def updateTile(self, tile_name, tile_dict):
-        clone_game_world = copy.deepcopy(self.game_world)
+        """ Ran by editTileForm when a user clicks save tile. Adds tile entry to game_world or updates it. """
+        if self.world_file_path == "":
+            # If the user hasn't opened/created a world file yet, display an error and exit
+            error_dialog = QErrorMessage(self)
+            error_dialog.setWindowTitle("Error")
+            error_dialog.showMessage("No world file selected! Please open a world file or create a new one.")
+            return
+        # Check if the user is trying to overwrite a different tile with an identical name or coordinates and resolve the issue
+        clone_game_world = copy.deepcopy(self.game_world) # You shouldn't modify an iterable you're iterating over
         for different_tile_name in self.game_world.keys():
             if different_tile_name == tile_name and self.game_world[different_tile_name]["coords"] != tile_dict["coords"]:
                 error_dialog = QErrorMessage(self)
                 error_dialog.setWindowTitle("Error")
                 error_dialog.showMessage("Tile name already used! Please change the name of the new tile.")
-                tile_name = "temp_name" + str(random.random() * 10)
+                tile_name = "temp_name" + str(random.random() * 10) # Give the tile a random name for the user to change later
             if self.game_world[different_tile_name]["coords"] == tile_dict["coords"]:
                 clone_game_world.pop(different_tile_name)
         self.game_world = clone_game_world
@@ -119,6 +136,7 @@ class mainMenuForm(QMainWindow):
 
 
     def openNewFile(self):
+        """ Ran when the user wants to open/create a new world file from the main menu. """
         # Close all pre-existing sub-forms before opening new world-file
         if hasattr(self, "editTile"):
             self.editTile.close()
