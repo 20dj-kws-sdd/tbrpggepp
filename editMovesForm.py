@@ -3,6 +3,7 @@
 import sys
 import time
 import copy
+import os
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -10,16 +11,21 @@ from PyQt5 import uic
 
 class editMovesForm(QMainWindow):
 
-    def __init__(self, moves_dict={}, parent=None):
+    def __init__(self, moves_dict={}, origin=False, parent=None):
         """ Initialises editMovesForm, ran when such an object is created.
         Preloads listbox with data if moves for this tile already exists. """
         super().__init__(parent)
-        uic.loadUi("UI_Layouts/editMovesForm.ui", self)
+        self.FILE_PATH = os.path.normcase(os.path.dirname(os.path.realpath(__file__)))
+        uic.loadUi(self.FILE_PATH + "/UI_Layouts/editMovesForm.ui", self)
         self.title = "tbrpggepp"
         self.editTileForm = parent
         self.moves_dict = copy.deepcopy(moves_dict) # The structure that is manipulated and sent back to parent
         # Add moves to combobox. They're displayed in the format of coordinate deltas
         self.moves = {"[0,-1]":[0,-1], "[1,0]":[1,0], "[0,1]":[0,1], "[-1,0]":[-1,0]}
+        if origin:
+            # If tile is 0,0 negative coords aren't available
+            self.moves.pop("[0,-1]")
+            self.moves.pop("[-1,0]")
         self.cbMoveDirValue.addItems(self.moves.keys())
 
         # Clear listbox and fill with any preexisting moves

@@ -4,6 +4,7 @@ import sys
 import time
 import json
 import random
+import os
 from pathlib import Path
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -17,7 +18,8 @@ class mainMenuForm(QMainWindow):
     def __init__(self, parent=None):
         """ Initialises mainMenuForm when such an object is created, opens introForm to get world file. """
         super().__init__(parent)
-        uic.loadUi("UI_Layouts/mainMenuForm.ui", self)
+        self.FILE_PATH = os.path.normcase(os.path.dirname(os.path.realpath(__file__)))
+        uic.loadUi(self.FILE_PATH + "/UI_Layouts/mainMenuForm.ui", self)
         self.title = "tbrpggepp"
         self.world_file = None
         self.world_file_path = ""
@@ -35,11 +37,17 @@ class mainMenuForm(QMainWindow):
         # Grey out edit tile button until a tile is clicked
         self.btnEditTile.setDisabled(True)
 
+        # Grey out property displays so users aren't tempted
+        # to try and edit them in mainMenu
+        self.txtTextValue.setDisabled(True)
+        self.lstMovesValue.setDisabled(True)
+
         # Add Connections
         self.btnEditTile.clicked.connect(self.btnEditTileClicked)
         self.btnDeleteTile.clicked.connect(self.btnDeleteTileClicked)
         self.actionOpen_File.triggered.connect(self.openNewFile)
         self.tblWorldMap.clicked.connect(self.tileClicked)
+        self.btnPlayGame.clicked.connect(self.btnPlayGameClicked)
 
 
     def loadWorldFile(self, world_file_path):
@@ -83,9 +91,28 @@ class mainMenuForm(QMainWindow):
         self.lblCoordsValue.setText(str(tile_json["coords"][0]) + ", " + str(tile_json["coords"][1]))
         self.txtTextValue.setText(tile_json["params"]["effect_text"])
         self.lstMovesValue.clear()
-        for key in tile_json["params"]["moves_dict"].keys():
+        sorted_moves = self.bubbleSort(list(tile_json["params"]["moves_dict"].keys())) # Superfluous sorting for project requirements
+        for key in sorted_moves:
             self.lstMovesValue.addItem(str(tile_json["params"]["moves_dict"][key]) + ": " + key)
 
+
+    def bubbleSort(self, iterable):
+        """ Helper function that bubble sorts a mutable iterable and returns the sorted object """
+        if iterable == []: # Empty moves form
+            return []
+        item = None
+        next_item = None
+        for i in range(0, len(iterable)):
+            flag = True
+            for j in range(0, len(iterable)-1):
+                item = iterable[j]
+                next_item = iterable[j+1]
+                if next_item < item:
+                    iterable[j] = next_item
+                    iterable[j+1] = item
+                    flag = False
+            if flag:
+                return iterable
 
     def btnEditTileClicked(self):
         """ Ran when the "edit tile" button is clicked. Opens editTileForm loaded with tile data. """
@@ -121,7 +148,7 @@ class mainMenuForm(QMainWindow):
             return
         # Check if the user is trying to overwrite a different tile with an identical name or coordinates and resolve the issue
         clone_game_world = copy.deepcopy(self.game_world) # You shouldn't modify an iterable you're iterating over
-        for different_tile_name in self.game_world.keys():
+        for different_tile_name in self.game_world.keys(): # Example of linear search
             if different_tile_name == tile_name and self.game_world[different_tile_name]["coords"] != tile_dict["coords"]:
                 error_dialog = QErrorMessage(self)
                 error_dialog.setWindowTitle("Error")
@@ -135,6 +162,15 @@ class mainMenuForm(QMainWindow):
         self.loadWorldFile(self.world_file_path)
 
 
+    def btnPlayGameClicked(self):
+        """ Spawns Text_Game.py process in a new window """
+        if sys.platform.startswith("linux"):
+            os.system("st -e python3 " + self.FILE_PATH + "/Text_Game.py " + os.path.dirname(self.world_file_path) + "/")
+        elif sys.platform.startswith("win32"):
+            # Solution to open program in new windows terminal from https://stackoverflow.com/questions/5137497/find-current-directory-and-files-directory
+            os.system("start /wait python " + self.FILE_PATH + "/Text_Game.py " + os.path.dirname(self.world_file_path) + "/")
+
+
     def openNewFile(self):
         """ Ran when the user wants to open/create a new world file from the main menu. """
         # Close all pre-existing sub-forms before opening new world-file
@@ -142,6 +178,7 @@ class mainMenuForm(QMainWindow):
             self.editTile.close()
             self.editTile.delChildForms()
             del self.editTile
+        self.game_world = {}
         self.introForm = introForm(self)
         self.introForm.show()
 

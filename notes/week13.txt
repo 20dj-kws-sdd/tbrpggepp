@@ -1,0 +1,10 @@
+
+- Resolved issue of being unable to create new terminal for game on windows by using "start /wait" command (from "https://stackoverflow.com/questions/5137497/find-current-directory-and-files-directory")
+- - Tested this on school computer
+
+- Encountered issue of program only being able to be ran in tbrpgepp directory due to usage of relative paths in program
+- - Resolved by pre-appending every use of a relative path with "os.path.normcase(os.path.dirname(os.path.realpath(__file__)))" which returns the directory of the file being ran in normal case (ie. forward slashes rather than backslashes, like windows
+
+- Found an issue where the bubbleSort returns None if given an empty dict form
+- - Resolved by adding an if statement in bubblesort that automatically returns and empty list if given one
+- - - Also could've been solved by adding a "return iterable" at the very end of the method after the main loop but that would have been less clear of a solution

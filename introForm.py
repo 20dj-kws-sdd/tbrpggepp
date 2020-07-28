@@ -2,6 +2,7 @@
 
 import sys
 import time
+import os
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -13,7 +14,8 @@ class introForm(QMainWindow):
     def __init__(self, parent=None):
         """ Initialises introForm upon creation of such an object """
         super().__init__(parent)
-        uic.loadUi("UI_Layouts/introForm.ui", self)
+        self.FILE_PATH = os.path.normcase(os.path.dirname(os.path.realpath(__file__)))
+        uic.loadUi(self.FILE_PATH + "/UI_Layouts/introForm.ui", self)
         self.title = "tbrpggepp"
 
         self.mainMenu = parent
@@ -55,6 +57,7 @@ class introForm(QMainWindow):
                 error_dialog.showMessage('Invalid world map file!')
             elif fname[0] != "":
                 self.mainMenu.writeWorldFile(fname[0])
+                self.mainMenu.loadWorldFile(fname[0])
                 self.mainMenu.show()
                 self.close()
 

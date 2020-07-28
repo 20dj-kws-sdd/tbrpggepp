@@ -1,0 +1,25 @@
+- Added an if statement to convert empty dmgtype enemy value to None, as it is represented in the json
+
+- Added an error message if the user attempts to save a tile before opening/creating a world file.
+
+- Added to the if clauses in the intro form so the user doesn't get an error message if they don't select a file (ie. cancelled the file dialog)
+
+- Added docstrings to every function in the program and proper comments, while I still remember how everything works!
+
+- Added bubbleSort algorithmn to lstMovesValue in mainMenuForm, sorts moves alphabetically by their labels.
+
+- Decided to limit scope of the project to disinclude git integration, since the user can simply do this this manually in a terminal if they wish. Not to mention they'd probably find that way easier.
+
+- Next is to implement the btnPlayGame feature, need to figure out how to spawn new processes in terminals in a cross-platform manner.
+
+- Implemented btnPlayGame for linux using os.system and os.path.dirname
+
+- Resolved issue whereby tblWorldMap and game_world wouldn't reset and reload after opening a new form from a preexisting one. Resolved by adding self.game_world = {} in actionOpenNewFile and loadWorldFile() in introForm.
+
+- Slightly modified Text_Game to fix how it iterates posisble questlines: skips directories in scandir and checks to be a json file.
+
+- An interesting tidbit is that the way i originally designed the text game is you pass to it the directory containing your world file rather than the file itself: this is useful because now it prevents the user from performing a shell injection attack
+
+- Fixed issue with opening game in windows because I assumed os.path would use different directory slash separator. Need to figure out how to spawn new terminals with os.system()
+
+- Started work on flowcharts and psuedocode in dia (did 4)

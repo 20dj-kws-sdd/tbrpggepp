@@ -14,7 +14,8 @@ class editEnemyForm(QMainWindow):
         """ Intialises editEnemyForm and is ran when such an object is created. Preloads
         user-input boxes with data if an enemy for this tile already exists. """
         super().__init__(parent)
-        uic.loadUi("UI_Layouts/editEnemyForm.ui", self)
+        self.FILE_PATH = os.path.normcase(os.path.dirname(os.path.realpath(__file__)))
+        uic.loadUi(self.FILE_PATH + "/UI_Layouts/editEnemyForm.ui", self)
         self.title = "tbrpggepp"
         self.editTileForm = parent
         self.enemy_dict = copy.deepcopy(enemy_dict) # The structure that's manipulated and sent back to parent

@@ -38,22 +38,20 @@
       <property name="spacing">
        <number>20</number>
       </property>
-      <item>
-       <widget class="QPushButton" name="btnCommit">
-        <property name="text">
-         <string>Commit</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="searchBar">
-        <property name="text">
-         <string>Search Tile</string>
-        </property>
-       </widget>
-      </item>
-      <item>
+      <item alignment="Qt::AlignLeft">
        <widget class="QPushButton" name="btnPlayGame">
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>Play Game</string>
         </property>

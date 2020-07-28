@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>480</height>
+    <height>503</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,26 @@
     <property name="bottomMargin">
      <number>20</number>
     </property>
-    <item>
+    <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+     <widget class="QLabel" name="lblLogo">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>logo.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignVCenter">
      <widget class="QLabel" name="lblIntro">
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Open file or create new World&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -69,7 +88,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1280</width>
+     <width>640</width>
      <height>30</height>
     </rect>
    </property>

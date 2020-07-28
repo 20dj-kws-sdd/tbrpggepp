@@ -2,6 +2,7 @@
 
 import sys
 import time
+import os
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -15,7 +16,8 @@ class editTileForm(QMainWindow):
     def __init__(self, tile_name=None, tile_dict={"params":{"effect_text":"", "location_text":"", "after_text":"", "moves_dict":{}}, "coords":[]}, coords=[], parent=None):
         """ Initialises editTileForm, is ran when such an object is created. Preloads forms with data if passed a preexisting tile. """
         super().__init__(parent)
-        uic.loadUi("UI_Layouts/editTileForm.ui", self)
+        self.FILE_PATH = os.path.normcase(os.path.dirname(os.path.realpath(__file__)))
+        uic.loadUi(self.FILE_PATH + "/UI_Layouts/editTileForm.ui", self)
         self.title = "tbrpggepp"
         self.mainMenuForm = parent
         self.tile_name = copy.deepcopy(tile_name)
@@ -106,7 +108,11 @@ class editTileForm(QMainWindow):
 
     def btnEditMovesClicked(self):
         """ Ran when the user intends to edit the moves of a tile. Preloads editMoves form with data and opens it. """
-        self.editMoves = editMovesForm(moves_dict=self.tile_dict["params"]["moves_dict"], parent=self)
+        if self.tile_dict["coords"] == [0,0]:
+            is_origin = True
+        else:
+            is_origin = False
+        self.editMoves = editMovesForm(moves_dict=self.tile_dict["params"]["moves_dict"], origin=is_origin, parent=self)
         self.editMoves.show()
 
 
