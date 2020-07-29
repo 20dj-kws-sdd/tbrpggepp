@@ -12,3 +12,5 @@
 - Found an issue where an if statement catching if the user was at the origin at editMovesTile (so the combobox could remove negative coord deltas) didn't work
 - - Figured out that checking if the user was at the origin via the coords tile_dict value was shoddy, since if a new tile was being created the coords list was empty.
 - - Resolved by changing the method of determing if the user was at the origin in editTileForm by grabbing the values from the coord value user input fields and passing the results of that to editMovesForm instead.
+
+- Finished dia diagrams

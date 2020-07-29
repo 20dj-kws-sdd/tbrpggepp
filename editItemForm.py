@@ -27,7 +27,7 @@ class editItemForm(QMainWindow):
         if self.item_dict != {"type":"item_obj", "params":{}}:
             # non-empty tile, prefill forms
 
-            self.leNameValue.setText(item_dict["name"])
+            self.leNameValue.setText(item_dict["params"]["name"])
             self.cbDmgTypeValue.setCurrentIndex(dmg_types.index(item_dict["params"]["dmgtype"]))
             self.sbHPEffectValue.setValue(item_dict["params"]["hpdelta"])
             self.chbHealingValue.setChecked(item_dict["params"]["heal_bool"])
