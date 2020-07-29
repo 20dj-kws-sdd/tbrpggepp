@@ -108,7 +108,7 @@ class editTileForm(QMainWindow):
 
     def btnEditMovesClicked(self):
         """ Ran when the user intends to edit the moves of a tile. Preloads editMoves form with data and opens it. """
-        if self.tile_dict["coords"] == [0,0]:
+        if self.sbXCoordValue.value() == 0 and self.sbYCoordValue.value() == 0:
             is_origin = True
         else:
             is_origin = False

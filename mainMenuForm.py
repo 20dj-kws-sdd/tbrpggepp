@@ -183,7 +183,7 @@ class mainMenuForm(QMainWindow):
         self.introForm.show()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # Runs application if mainMenuForm.py is ran directly
     app = QApplication(sys.argv)
     ex = mainMenuForm()
     ex.show()

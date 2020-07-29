@@ -3,6 +3,7 @@
 import sys
 import time
 import copy
+import os
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -17,7 +18,7 @@ class editEnemyForm(QMainWindow):
         self.FILE_PATH = os.path.normcase(os.path.dirname(os.path.realpath(__file__)))
         uic.loadUi(self.FILE_PATH + "/UI_Layouts/editEnemyForm.ui", self)
         self.title = "tbrpggepp"
-        self.editTileForm = parent
+        self.editTile = parent
         self.enemy_dict = copy.deepcopy(enemy_dict) # The structure that's manipulated and sent back to parent
         # Load combobox with dmgtypes.
         dmg_types = [None,'a']
@@ -44,12 +45,12 @@ class editEnemyForm(QMainWindow):
         """ Loads parameters into enemy_dict with user-input data and sends it back to editItemform. """
         self.enemy_dict["params"]["name"] = self.leNameValue.text()
         self.enemy_dict["params"]["attack_damage"] = self.sbAttackDmgValue.value()
+        self.enemy_dict["params"]["max_health"] = self.sbMaxHPValue.value()
         # Programatically an empty dmgtype is saved as 'None' but the combobox returns an
         # empty string if this is selected. This if-statement catches that and corrects it.
         if self.cbDmgTypeValue.currentText() == "":
             self.enemy_dict["params"]["dmgtype"] = None
-        self.enemy_dict["params"]["max_health"] = self.sbMaxHPValue.value()
-        self.editTileForm.updateEnemy(self.enemy_dict)
+        self.editTile.updateEnemy(self.enemy_dict)
         self.close()
 
 if __name__ == "__main__":

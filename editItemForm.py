@@ -19,7 +19,7 @@ class editItemForm(QMainWindow):
         uic.loadUi(self.FILE_PATH + "/UI_Layouts/editItemForm.ui", self)
         self.title = "tbrpggepp"
         self.item_dict = copy.deepcopy(item_dict) # The structure that is manipulated and sent back to parent
-        self.editTileForm = parent
+        self.editTile = parent
         # Add dmgtypes to combobox
         dmg_types = [None,'a']
         self.cbDmgTypeValue.addItems(dmg_types)
@@ -50,7 +50,7 @@ class editItemForm(QMainWindow):
         self.item_dict["params"]["dmgtype"] = self.cbDmgTypeValue.currentText()
         self.item_dict["params"]["heal_bool"] = self.chbHealingValue.isChecked()
         self.item_dict["params"]["effect_text"] = self.pteEffectTextValue.toPlainText()
-        self.editTileForm.updateItem(item_dict, self.sbQuantityValue.value())
+        self.editTile.updateItem(item_dict, self.sbQuantityValue.value())
         self.close()
 
 if __name__ == "__main__":

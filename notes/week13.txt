@@ -8,3 +8,7 @@
 - Found an issue where the bubbleSort returns None if given an empty dict form
 - - Resolved by adding an if statement in bubblesort that automatically returns and empty list if given one
 - - - Also could've been solved by adding a "return iterable" at the very end of the method after the main loop but that would have been less clear of a solution
+
+- Found an issue where an if statement catching if the user was at the origin at editMovesTile (so the combobox could remove negative coord deltas) didn't work
+- - Figured out that checking if the user was at the origin via the coords tile_dict value was shoddy, since if a new tile was being created the coords list was empty.
+- - Resolved by changing the method of determing if the user was at the origin in editTileForm by grabbing the values from the coord value user input fields and passing the results of that to editMovesForm instead.
