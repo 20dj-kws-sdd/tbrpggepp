@@ -28,7 +28,7 @@ class editTileForm(QMainWindow):
         self.cbTypeValue.addItems(types)
 
         if self.tile_name != None:
-            # non-empty tile, prefill forms
+            # non-empty tile, prefill fields
             self.leNameValue.setText(self.tile_name)
             self.cbTypeValue.setCurrentIndex(types.index(tile_dict["type"]))
             self.cbTypeValueActivated() # update logic with new type value
@@ -100,7 +100,7 @@ class editTileForm(QMainWindow):
         else:
             if "item" in self.tile_dict["params"].keys():
                 # Preload child form with preexisting element data
-                self.editItem = editItemForm(item_dict=self.tile_dict["params"]["item"], parent=self)
+                self.editItem = editItemForm(item_dict=self.tile_dict["params"]["item"], quantity=self.tile_dict["params"]["quantity"], parent=self)
             else:
                 self.editItem = editItemForm(parent=self)
             self.editItem.show()

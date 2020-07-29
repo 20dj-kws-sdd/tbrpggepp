@@ -25,7 +25,7 @@ class editEnemyForm(QMainWindow):
         self.cbDmgTypeValue.addItems(dmg_types)
 
         if self.enemy_dict != {"type":"monster_obj", "params":{}}:
-            # non-empty tile, prefill forms
+            # non-empty tile, prefill input fields
             self.leNameValue.setText(enemy_dict["params"]["name"])
             self.cbDmgTypeValue.setCurrentIndex(dmg_types.index(enemy_dict["params"]["dmgtype"]))
             self.sbMaxHPValue.setValue(enemy_dict["params"]["max_health"])

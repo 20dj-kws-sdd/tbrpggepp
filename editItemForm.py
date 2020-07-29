@@ -11,7 +11,7 @@ from PyQt5 import uic
 
 class editItemForm(QMainWindow):
 
-    def __init__(self, item_dict={"type":"item_obj", "params":{}}, parent=None):
+    def __init__(self, item_dict={"type":"item_obj", "params":{}}, quantity=1, parent=None):
         """ Initialises editItem form, preloading input boxes if a prexisting item exists.
         Ran when an editItemForm object is created. """
         super().__init__(parent)
@@ -25,14 +25,18 @@ class editItemForm(QMainWindow):
         self.cbDmgTypeValue.addItems(dmg_types)
 
         if self.item_dict != {"type":"item_obj", "params":{}}:
-            # non-empty tile, prefill forms
+            # non-empty tile, prefill input fields
 
             self.leNameValue.setText(item_dict["params"]["name"])
             self.cbDmgTypeValue.setCurrentIndex(dmg_types.index(item_dict["params"]["dmgtype"]))
             self.sbHPEffectValue.setValue(item_dict["params"]["hpdelta"])
             self.chbHealingValue.setChecked(item_dict["params"]["heal_bool"])
-            self.sbQuantityValue.setValue(item_dict["params"]["quantity"])
             self.pteEffectTextValue.setPlainText(item_dict["params"]["effect_text"])
+
+        if quantity != 1:
+            # Non-default quantity value passed from
+            # tile form, prefill input field
+            self.sbQuantityValue.setValue(quantity)
 
         # Add connections
         self.btnCancel.clicked.connect(self.btnCancelClicked)
@@ -47,10 +51,13 @@ class editItemForm(QMainWindow):
         """ Loads parameters into item_dict with user-input data and sends it back to editItemform. """
         self.item_dict["params"]["name"] = self.leNameValue.text()
         self.item_dict["params"]["hpdelta"] = self.sbHPEffectValue.value()
-        self.item_dict["params"]["dmgtype"] = self.cbDmgTypeValue.currentText()
         self.item_dict["params"]["heal_bool"] = self.chbHealingValue.isChecked()
         self.item_dict["params"]["effect_text"] = self.pteEffectTextValue.toPlainText()
-        self.editTile.updateItem(item_dict, self.sbQuantityValue.value())
+        # Programatically an empty dmgtype is saved as 'None' but the combobox returns an
+        # empty string if this is selected. This if-statement catches that and corrects it.
+        if self.cbDmgTypeValue.currentText() == "":
+            self.item_dict["params"]["dmgtype"] = None
+        self.editTile.updateItem(self.item_dict, self.sbQuantityValue.value())
         self.close()
 
 if __name__ == "__main__":
