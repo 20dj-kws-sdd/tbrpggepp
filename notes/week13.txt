@@ -14,3 +14,9 @@
 - - Resolved by changing the method of determing if the user was at the origin in editTileForm by grabbing the values from the coord value user input fields and passing the results of that to editMovesForm instead.
 
 - Finished dia diagrams
+
+- Added online input to forms, had to split manual with `standalone` latex module so each form could have an individual .tex file and pdf which are then compiled into the main user manual
+
+- Resolved mutltiple minor bugs including the editItem form opening with quantity=0 even if it was 1, this was because I set the default value to be 1 in the init form and if it was one it would skip the statement setting the input field to the passed quantity. Resolved by setting the default value to 0.
+
+- Added tutorial.json game-world file to project directory, as an example for the user to edit off of.

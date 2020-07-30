@@ -12,7 +12,7 @@ from PyQt5 import uic
 
 class editItemForm(QMainWindow):
 
-    def __init__(self, item_dict={"type":"item_obj", "params":{}}, quantity=1, parent=None):
+    def __init__(self, item_dict={"type":"item_obj", "params":{}}, quantity=0, parent=None):
         """ Initialises editItem form, preloading input boxes if a prexisting item exists.
         Ran when an editItemForm object is created. """
         super().__init__(parent)
@@ -34,7 +34,7 @@ class editItemForm(QMainWindow):
             self.chbHealingValue.setChecked(item_dict["params"]["heal_bool"])
             self.pteEffectTextValue.setPlainText(item_dict["params"]["effect_text"])
 
-        if quantity != 1:
+        if quantity != 0:
             # Non-default quantity value passed from
             # tile form, prefill input field
             self.sbQuantityValue.setValue(quantity)
