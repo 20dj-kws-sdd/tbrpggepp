@@ -22,7 +22,7 @@ class introForm(QMainWindow):
         self.mainMenu = parent
 
         # Add connections
-        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/manual.pdf#page=4"))
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/introFormManual.pdf"))
         self.btnOpenFile.clicked.connect(self.btnOpenFileClicked)
         self.btnNewWorld.clicked.connect(self.btnNewWorldClicked)
 

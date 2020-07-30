@@ -45,7 +45,7 @@ class editTileForm(QMainWindow):
             self.sbYCoordValue.setValue(coords[1])
 
         # Add connections
-        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/manual.pdf#page=9"))
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/editTileFormManual.pdf"))
         self.btnEditElement.clicked.connect(self.btnEditElementClicked)
         self.btnEditMoves.clicked.connect(self.btnEditMovesClicked)
         self.cbTypeValue.activated.connect(self.cbTypeValueActivated)

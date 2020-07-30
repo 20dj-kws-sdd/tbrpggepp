@@ -33,7 +33,7 @@ class editMovesForm(QMainWindow):
         self.reloadMovesListbox()
 
         # Add connections
-        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/manual.pdf#page=12"))
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/editMovesFormManual.pdf"))
         self.btnClear.clicked.connect(self.btnClearClicked)
         self.btnAddMove.clicked.connect(self.btnAddMoveClicked)
         self.btnCancel.clicked.connect(self.btnCancelClicked)

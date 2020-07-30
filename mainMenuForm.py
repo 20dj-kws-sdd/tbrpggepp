@@ -44,7 +44,7 @@ class mainMenuForm(QMainWindow):
         self.lstMovesValue.setDisabled(True)
 
         # Add connections
-        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://" + self.FILE_PATH + "/manual/manual.pdf#page=7"))
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://" + self.FILE_PATH + "/manual/mainMenuFormManual.pdf"))
         self.btnEditTile.clicked.connect(self.btnEditTileClicked)
         self.btnDeleteTile.clicked.connect(self.btnDeleteTileClicked)
         self.actionOpen_File.triggered.connect(self.openNewFile)

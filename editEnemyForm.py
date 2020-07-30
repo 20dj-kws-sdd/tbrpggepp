@@ -33,7 +33,7 @@ class editEnemyForm(QMainWindow):
             self.sbAttackDmgValue.setValue(enemy_dict["params"]["attack_damage"])
 
         # Add connections
-        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/manual.pdf#page=11"))
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/editEnemyFormManual.pdf"))
         self.btnCancel.clicked.connect(self.btnCancelClicked)
         self.btnSaveEnemy.clicked.connect(self.btnSaveEnemyClicked)
 
