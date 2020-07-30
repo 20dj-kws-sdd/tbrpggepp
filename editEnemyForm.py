@@ -4,6 +4,7 @@ import sys
 import time
 import copy
 import os
+import webbrowser
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -32,6 +33,7 @@ class editEnemyForm(QMainWindow):
             self.sbAttackDmgValue.setValue(enemy_dict["params"]["attack_damage"])
 
         # Add connections
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/manual.pdf#page=11"))
         self.btnCancel.clicked.connect(self.btnCancelClicked)
         self.btnSaveEnemy.clicked.connect(self.btnSaveEnemyClicked)
 

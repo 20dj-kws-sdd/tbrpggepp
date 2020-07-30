@@ -108,12 +108,12 @@ As stated above, clicking the "Play Game" button in the Main Menu form will open
 	\centering
 	\includegraphics[width=1.0\textwidth]{./gameplay.png}
 \end{figure}
-When the game program begins, it gives you the decision to choose any of the other game-world files within the directory of your tbrpggepp world file. After loading the desired game-world file, we see the player met with the introductory text of the tile at coordinates0,0; followed by a prompt where the player may either:
+When the game program begins, it gives you the decision to choose any of the other game-world files within the directory of your \texttt{tbrpggepp} world file. After loading the desired game-world file, we see the player met with the introductory text of the tile at coordinates 0,0; followed by a prompt where the player may either:
 \begin{itemize}
-	\item Look around: displaying the text in the "Description" field shown in section 2.3
-	\item Check health: displaying the current HP value of the player
-	\item check inventory: displaying the current inventory of the player
-	\item "go east": evidently one of the moves created for the tile at coordinates 0,0.
+	\item "\texttt{look around}": displays the text in the "Description" field shown in section 2.3
+	\item "\texttt{check health}": displays the current HP (Health Points) value of the player
+	\item "\texttt{check inventory}": displays the current inventory of the player
+	\item "\texttt{go east}": evidently one of the moves created for the tile at coordinates 0,0.
 \end{itemize}
 Other scenarios display different prompts, such as when one has consumable health items in their inventory or are engaged in a battle with an enemy. This "tutorial" questline is provided alongside \texttt{tbrpggepp}, which you may want to attempt in order to gain familiarity with \texttt{Adventure Quest}'s style of gameplay.
 \newpage
@@ -125,10 +125,10 @@ Other scenarios display different prompts, such as when one has consumable healt
 Within this form you can edit the properties of individual tiles. Most of these properties have been described in the previous section, the new properties and UI components are as follows:
 \begin{itemize}
 	\item Description: the text the player sees when they enter the "\texttt{look around}" action. Should contain a more detailed description of the environment within the tile.
-	\item Return Text: the text the player sees when they re-enter the tile after having visited it before. For example, if this were an \texttt{enemy\_room}, the Return Text would contain something like "a defeated enemy lies on the floor".
-	\item "Edit Element": This is greyed out because the tile is currently selected to be a "\texttt{basic\_room}" type. Otherwise, this button would either open the Edit item or Edit Enemy form, depending on whether the tile is of type "\texttt{item\_room}" or "\texttt{enemy\_room}" respectively. The text label of the button changes correspondingly as the selected tile type changes as well.
+	\item Return Text: the text the player sees when they re-enter the tile after having visited it before. For example, if this were an \texttt{enemy\_room}, the Return Text should contain something like "a defeated enemy lies on the floor".
+	\item "Edit Element": This is greyed out because the tile is currently selected to be a "\texttt{basic\_room}" type. Otherwise, this button would either open the Edit Item or Edit Enemy form, depending on whether the tile is of type "\texttt{item\_room}" or "\texttt{enemy\_room}" respectively. The text label of the button changes correspondingly as the tile type changes as well.
 	\item "Edit Moves" button: this opens the Edit Moves form, allowing you to edit the list of moves for the tile.
-	\item "Cancel" button: this will close the form and all sub-forms without saving any changed onto the game-map.
+	\item "Cancel" button: this will close the form and all sub-forms without saving any changes in the game-world..
 	\item "Save" button: this will close the form and all sub-forms while saving all changes in the game-world.
 \end{itemize}
 \newpage
@@ -139,11 +139,11 @@ This is the form that is opened when you click the "Edit Item" (otherwise "Edit 
 	\includegraphics[width=1.0\textwidth]{./editItemForm.png}
 \end{figure}
 \begin{itemize}
-	\item Name: this is the name of the item and will be seen by the player.
-	\item Dmg Type: the damage type of the item, in more complicated narratives this feature can be used to enrich gameplay. A weapon of a specific damage type interacting with an enemy of the same damage type deals potentially massive damamge.
+	\item Name: this is the name of the item within the game, and it will be seen by the player.
+	\item Dmg Type: the damage type of the item; in more complicated narratives this feature can be used to enrich gameplay. A weapon of a specific damage type interacting with an enemy of the same damage type deals potentially massive damamge.
 	\item HP Effect: the maximum amount of damage inflicted by the item if it is a weapon, or the amount of player health the item heals if it is a consumable healing item. Note that the maximum player HP is 10.
 	\item Quantity: the number of items contained in the tile overall. Note that an \texttt{item\_room} tile may only contain one type of item, but may possess multiple items of that type.
-	\item "Is Healing" checkbox: Determines whether the item is a weapon inflicting damage, or a consumable healing item.
+	\item "Is Healing" checkbox: Determines whether the item is a weapon that inflicts damage, or is a consumable healing item instead.
 	\item Effect text: the text displayed to the player after consuming a the item, only relevant if "Is Healing" is checked.
 	\item Cancel: closes the form without saving changes.
 	\item Save Item: closes the form while saving the item to the parent Edit Tile form.
@@ -157,10 +157,10 @@ This is the form that is opened when you click the "Edit Enemy" (otherwise "Edit
 	\includegraphics[width=1.0\textwidth]{./editEnemyForm.png}
 \end{figure}
 \begin{itemize}
-	\item Name: this is the name of the enemy and will be seen by the player.
-	\item Dmg Type: the damage type of the enemy, in more complicated narratives this feature can be used to enrich gameplay. A weapon of a specific damage type interacting with an enemy of the same damage type deals potentially massive damamge.
+	\item Name: this is the name of the enemy within the game, and it will be seen by the player.
+	\item Dmg Type: the damage type of the enemy; in more complicated narratives this feature can be used to enrich gameplay. A weapon of a specific damage type interacting with an enemy of the same damage type deals potentially massive damamge.
 	\item Max HP: The maximum number of health points carried by the enemy. Note that the player character starts with maximum health at 10 HP.
-	\item Attack Dmg: The maximum number of HP the enemy can detract from the player during one turn of battle.
+	\item Attack Dmg: The maximum amount of HP the enemy can detract from the player during one turn of a battle.
 	\item Cancel: closes the form without saving changes.
 	\item Save Item: closes the form while saving the enemy to the parent Edit Tile form.
 \end{itemize}
@@ -172,14 +172,15 @@ This is the form that is opened when you click the "Edit Moves" button within th
 	\includegraphics[width=1.0\textwidth]{./editMovesForm.png}
 \end{figure}
 \begin{itemize}
-	\item Move Label: the name of the move, which is visible to the player. The move is executed by the player entering the move label into the game's text prompt.
-	\item Move Direction: the "coordinate delta" of the move which as explained in section 2.2, mathematically represents the change in X,Y coordinates which is applied to the player as they execute the move.
-	\item "Clear" button: erases the current list of moves for the tile being edited. If this is clicked accidentally, cancel the Edit Moves form and reopen it from the Edit Tile form.
-	\item "Add Move" button: adds to the tile's list of moves the new individual move defined by the Label and Direction specified in the above input fields.
-	\item On the right-hand side of the form there is a large read-only list box which displays the moves currently assigned to the tile being edited.
+	\item Move Label: the name of the move as seen by the player. The move is executed after the player enters the move label into the game's text prompt. The label of a move, like the name of a tile, is a unique identifier and reusing a label will result in overwriting the move that previously shared the label.
+	\item Move Direction: the "coordinate delta" of the move which as explained in section 2.2, mathematically represents the change in X,Y coordinates which is applied to the player after they execute the move.
+	\item "Clear" button: erases the current list of moves for the tile being edited. If this is clicked accidentally, simply cancel the Edit Moves form and reopen it from the Edit Tile form.
+	\item "Add Move" button: adds the new individual move (as defined by the label and direction specified in the above input fields) to the tile's overall list of moves.
 	\item Cancel: closes the form without saving changes.
 	\item Save Moves: closes the form while saving the updated moves to the parent Edit Tile form.
+	\item On the right-hand side of the form there is a large read-only list box which displays the list of moves currently assigned to the tile being edited.
 \end{itemize}
+With all these forms combined, you're all set to start creating text adventure games!
 \newpage
 \section{Troubleshooting Guide}
 \subsection{Issue 1: Invalid world map file!}
@@ -192,10 +193,14 @@ This is the form that is opened when you click the "Edit Moves" button within th
 \end{itemize}
 \subsection{Issue 3: Tile name already used!}
 \begin{itemize}
-	\item Despite the player within the text-game never seeing the given names of tiles, they are essential in that they uniquely define the tile both to the game-designer and the game program internally. Therefore no two tiles can share the same name. \texttt{tbrpggepp} has resolved this temporarily by renaming the newly updated tile with a randomly generated name, which you may rename again to a unique, more human-readable alternative at your leisure.
+	\item Despite the player within the text-game never seeing the given names of tiles, they are essential in that they uniquely define the tile both to the game-designer and the game program internally. Therefore no two tiles can share the same name without overwriting another tile and causing loss of data. \texttt{tbrpggepp} has resolved this temporarily by renaming the newly updated tile with a randomly generated name, which you may rename again to a unique, more human-readable alternative at your leisure.
 \end{itemize}
 \subsection{Issue 4: Tile name left blank!}
-For reasons stated immediately above, the presence of a unique name per each tile is essential to the function of \texttt{tbrpggepp}. Therefore you must enter a unique name into the Edit Tile form before you can save your work.
+\begin{itemize}
+	\item For reasons stated immediately above, the presence of a unique name per each tile is essential to the function of \texttt{tbrpggepp}. Therefore you must enter a unique name into the Edit Tile form before you can save your work.
+\end{itemize}
 \subsection{Issue 5: The program crashed!}
-Whoops. Please tell me what you were doing immediately before the crash and how you were doing it.
+\begin{itemize}
+	\item Whoops! Please tell me what you were doing immediately before the crash and how you were doing it.
+\end{itemize}
 \end{document}

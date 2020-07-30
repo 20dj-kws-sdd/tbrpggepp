@@ -3,6 +3,7 @@
 import sys
 import time
 import os
+import webbrowser
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -21,6 +22,7 @@ class introForm(QMainWindow):
         self.mainMenu = parent
 
         # Add connections
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/manual.pdf#page=4"))
         self.btnOpenFile.clicked.connect(self.btnOpenFileClicked)
         self.btnNewWorld.clicked.connect(self.btnNewWorldClicked)
 

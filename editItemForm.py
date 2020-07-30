@@ -4,6 +4,8 @@ import sys
 import time
 import copy
 import os
+import webbrowser
+import webbrowser
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -39,6 +41,7 @@ class editItemForm(QMainWindow):
             self.sbQuantityValue.setValue(quantity)
 
         # Add connections
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/manual.pdf#page=10"))
         self.btnCancel.clicked.connect(self.btnCancelClicked)
         self.btnSaveItem.clicked.connect(self.btnSaveItemClicked)
 

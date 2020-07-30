@@ -4,6 +4,7 @@ import sys
 import time
 import copy
 import os
+import webbrowser
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -32,6 +33,7 @@ class editMovesForm(QMainWindow):
         self.reloadMovesListbox()
 
         # Add connections
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/manual.pdf#page=12"))
         self.btnClear.clicked.connect(self.btnClearClicked)
         self.btnAddMove.clicked.connect(self.btnAddMoveClicked)
         self.btnCancel.clicked.connect(self.btnCancelClicked)

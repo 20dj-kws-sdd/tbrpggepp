@@ -5,6 +5,7 @@ import time
 import json
 import random
 import os
+import webbrowser
 from pathlib import Path
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -42,7 +43,8 @@ class mainMenuForm(QMainWindow):
         self.txtTextValue.setDisabled(True)
         self.lstMovesValue.setDisabled(True)
 
-        # Add Connections
+        # Add connections
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://" + self.FILE_PATH + "/manual/manual.pdf#page=7"))
         self.btnEditTile.clicked.connect(self.btnEditTileClicked)
         self.btnDeleteTile.clicked.connect(self.btnDeleteTileClicked)
         self.actionOpen_File.triggered.connect(self.openNewFile)

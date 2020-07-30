@@ -3,6 +3,7 @@
 import sys
 import time
 import os
+import webbrowser
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -44,6 +45,7 @@ class editTileForm(QMainWindow):
             self.sbYCoordValue.setValue(coords[1])
 
         # Add connections
+        self.actionOnline_Help.triggered.connect(lambda: webbrowser.open_new("file://"+ self.FILE_PATH + "/manual/manual.pdf#page=9"))
         self.btnEditElement.clicked.connect(self.btnEditElementClicked)
         self.btnEditMoves.clicked.connect(self.btnEditMovesClicked)
         self.cbTypeValue.activated.connect(self.cbTypeValueActivated)
