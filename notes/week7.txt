@@ -1,7 +1,0 @@
-- Fixed issue of non-adjusting widgets by reassigning all sub-widgets to central widget with defined layout, adding margins as needed
-- Completed building and naming of elements of forms
-- Added multi-form functionality by importing form classes, assigning them to objects and using show() method
-- Disabled editing on table my removing edit triggers
-- Realized that since each room type has significantly varying parameters I'll have to construct a different edit for for each room type, and have the user select the room type for new rooms from the main menu
-- Will have to add a "create room" button
-- - Could have the "edit tile" button change text to create room if the highlighted tile isn't created in the game world yet

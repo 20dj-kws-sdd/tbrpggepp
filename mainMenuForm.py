@@ -169,7 +169,7 @@ class mainMenuForm(QMainWindow):
         if sys.platform.startswith("linux"):
             os.system("st -e python3 " + self.FILE_PATH + "/Text_Game.py " + os.path.dirname(self.world_file_path) + "/")
         elif sys.platform.startswith("win32"):
-            # Solution to open program in new windows terminal from https://stackoverflow.com/questions/5137497/find-current-directory-and-files-directory
+            # Solution to open program in new windows terminal from https://stackoverflow.com/a/11615580
             os.system("start /wait python " + self.FILE_PATH + "/Text_Game.py " + os.path.dirname(self.world_file_path) + "/")
 
 
